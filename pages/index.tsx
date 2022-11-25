@@ -1,11 +1,22 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRef, useState } from 'react'
 import { HeaderFixed } from '../components/HeaderFixed'
 import { HeaderSticky } from '../components/HeaderSticky'
 import { TextInput } from '../components/TextInput'
+import useAutosizeTextArea from '../functions/useAutosizeTextArea'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  const [value, setValue] = useState("");
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  useAutosizeTextArea(textAreaRef.current, value);
+  const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const val = evt.target?.value;
+    setValue(val);
+  };
+
   return (
     <>
       <Head>
@@ -14,12 +25,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeaderSticky />
-      <main className={styles.main}>
-       <TextInput />
-      </main>
-      <footer className={styles.footer}>
-        This is a test page
-      </footer>
+      <TextInput textAreaRef={textAreaRef} handleChange={handleChange}/>
     </>
   )
 }
