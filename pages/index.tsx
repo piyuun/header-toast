@@ -16,7 +16,7 @@ export default function Home() {
     const val = evt.target?.value;
     setValue(val);
   };
-
+  
   return (
     <>
       <Head>
