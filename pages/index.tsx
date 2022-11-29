@@ -14,6 +14,7 @@ import {
 import { handleWordLimitToast } from '../components/WordLimitToast'
 import styled from 'styled-components';
 import useDetectKeyboardOpen from "use-detect-keyboard-open";
+import useWindowSize from '../functions/useWindowSize';
 
 const TestDiv = styled.div`
   float: left;
@@ -35,6 +36,8 @@ export default function Home() {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [exampleDataList, setExampleDataList] = useState<string[]>([]);
   const isKeyboardOpen = useDetectKeyboardOpen();
+  const [windowHeight, setWindowHeight] = useState(0); 
+  const size = useWindowSize(); // for responsive web
 
   useAutosizeTextArea(textAreaRef.current, value);
 
@@ -55,6 +58,10 @@ export default function Home() {
     const list = [ex1, ex2, ex3, ex4];
     setExampleDataList(list);
   }, []);
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+  },[size])
   
   return (
     <>
@@ -66,9 +73,10 @@ export default function Home() {
       <HeaderFixed top={isKeyboardOpen ? 200 : 0} />
       {/* <HeaderSticky /> */}
       <TextInputContianer>
+        <TestDiv>WINDOW HEIGHT: {windowHeight}</TestDiv>
         {isKeyboardOpen
-          ? <TestDiv>VISIBLE</TestDiv>
-          : <TestDiv>NONVISIBLE</TestDiv>
+          ? <TestDiv>KEYBOARD VISIBLE</TestDiv>
+          : <TestDiv>KEYBOARD NONVISIBLE</TestDiv>
         }
         <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
       </TextInputContianer>
