@@ -37,6 +37,7 @@ export default function Home() {
   const [exampleDataList, setExampleDataList] = useState<string[]>([]);
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [windowHeight, setWindowHeight] = useState(0); 
+  const [windowAvailHeight, setWindowAvailHeight] = useState(0);
   const size = useWindowSize(); // for responsive web
 
   useAutosizeTextArea(textAreaRef.current, value);
@@ -60,7 +61,8 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setWindowHeight(window.screen.availHeight);
+    setWindowHeight(window.innerHeight);
+    setWindowAvailHeight(window.screen.availHeight);
   },[size])
   
   return (
@@ -73,7 +75,8 @@ export default function Home() {
       <HeaderFixed top={isKeyboardOpen ? 200 : 0} />
       {/* <HeaderSticky /> */}
       <TextInputContianer>
-        <TestDiv>WINDOW HEIGHT: {windowHeight}</TestDiv>
+        <TestDiv>WINDOW INNER HEIGHT: {windowHeight}</TestDiv>
+        <TestDiv>WINDOW AVAIL HEIGHT: {windowHeight}</TestDiv>
         {isKeyboardOpen
           ? <TestDiv>KEYBOARD VISIBLE</TestDiv>
           : <TestDiv>KEYBOARD NONVISIBLE</TestDiv>
