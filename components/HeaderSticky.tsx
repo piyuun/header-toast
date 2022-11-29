@@ -11,6 +11,7 @@ export const Component = styled.header`
   width: 100%;
   z-index: 100;
   background-color: yellow;
+  overscroll-behavior-y: contain;
 `;
 
 export const HeaderSticky = () => {
