@@ -60,7 +60,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setWindowHeight(window.innerHeight);
+    setWindowHeight(window.screen.availHeight);
   },[size])
   
   return (
