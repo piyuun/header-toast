@@ -12,7 +12,12 @@ import {
   example04,
 } from '../functions/examples';
 import { handleWordLimitToast } from '../components/WordLimitToast'
+import styled from 'styled-components';
 
+
+const TextInputContianer = styled.div`
+  scroll-padding-top: 50px;
+`
 export default function Home() {
   const [value, setValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -47,9 +52,9 @@ export default function Home() {
       </Head>
       <HeaderFixed/>
       {/* <HeaderSticky /> */}
-
-      <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
-
+      <TextInputContianer>
+        <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
+      </TextInputContianer>
       {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
       <ToastContainer
         progressClassName="toastProgress"
