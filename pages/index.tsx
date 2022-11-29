@@ -17,7 +17,7 @@ export default function Home() {
   const [exampleDataList, setExampleDataList] = useState<string[]>([]);
 
   useAutosizeTextArea(textAreaRef.current, value);
-  
+
   const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = evt.target?.value;
     setValue(val);
@@ -43,7 +43,7 @@ export default function Home() {
       {/* <HeaderSticky /> */}
 
       <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
-      <h1 className={styles.title}>Test for device check</h1>
+      <h1 className={styles.title}>Device Check</h1>
 
         <div className={styles.description}>
           <table className={styles.table}>
