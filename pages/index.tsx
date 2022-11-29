@@ -13,6 +13,10 @@ import {
 } from '../functions/examples';
 import { handleWordLimitToast } from '../components/WordLimitToast'
 import styled from 'styled-components';
+import { subscribe, isSupported } from 'on-screen-keyboard-detector';
+
+
+
 
 const TestDiv = styled.div`
   float: left;
@@ -36,6 +40,7 @@ export default function Home() {
   const [value, setValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [exampleDataList, setExampleDataList] = useState<string[]>([]);
+  const [isKeyboardUp, setIsKeyboardUp] = useState(false);
 
   useAutosizeTextArea(textAreaRef.current, value);
 
@@ -48,6 +53,19 @@ export default function Home() {
     }
   };
 
+  if (isSupported()) {
+    const unsubscribe = subscribe(visibility => {
+      if (visibility === "hidden") {
+        setIsKeyboardUp(false);
+      }
+      else { // visibility === "visible"
+        setIsKeyboardUp(true);
+      }
+    });   
+    // After calling unsubscribe() the callback will no longer be invoked.
+    unsubscribe();
+  }
+
   useEffect(() => {
     const ex1 = example01();
     const ex2 = example02();
@@ -55,6 +73,8 @@ export default function Home() {
     const ex4 = example04();
     const list = [ex1, ex2, ex3, ex4];
     setExampleDataList(list);
+
+    
 
   }, []);
   
@@ -68,7 +88,10 @@ export default function Home() {
       <HeaderFixed/>
       {/* <HeaderSticky /> */}
       <TextInputContianer>
-        <TestDiv>THIS IS TEST DIV</TestDiv>
+        {isKeyboardUp
+          ? <TestDiv>VISIBLE</TestDiv>
+          : <TestDiv>NONVISIBLE</TestDiv>
+        }
         <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
       </TextInputContianer>
       {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
