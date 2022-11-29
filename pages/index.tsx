@@ -82,6 +82,7 @@ export default function Home() {
       </TextInputContianer>
       {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
       <ToastContainer
+        className={isKeyboardOpen? 'toast-position': ''}
         progressClassName="toastProgress"
         bodyClassName="toastBody"
         closeButton={false}
