@@ -17,6 +17,8 @@ import styled from 'styled-components';
 
 const TextInputContianer = styled.div`
   scroll-padding-top: 50px;
+  position: relative;
+  display: inline-block;
 `
 export default function Home() {
   const [value, setValue] = useState("");
@@ -63,6 +65,7 @@ export default function Home() {
       <TextInputContianer>
         <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
         <h1 id="text">Change orientation/screen height</h1>
+        <div id="click">Click DIV</div>
       </TextInputContianer>
       {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
       <ToastContainer

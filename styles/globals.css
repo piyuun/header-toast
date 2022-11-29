@@ -15,6 +15,15 @@ a {
   box-sizing: border-box;
 }
 
+#click {
+  width: 30px;
+  height: 30px;
+  position: absolute; /* to align it to right and positon it over the input */
+  top: 0;
+  right: 0;
+  background: lightgrey;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
