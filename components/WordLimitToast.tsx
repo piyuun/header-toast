@@ -25,7 +25,7 @@ const WordLimitToast = () => {
 
 export const handleWordLimitToast = () => {
   return toast(({}) => <WordLimitToast />, {
-    position: 'bottom-center',
+    position: 'top-center',
     autoClose: 2000,
     hideProgressBar: true,
     closeOnClick: true,
