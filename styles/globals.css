@@ -24,3 +24,9 @@ a {
     background: black;
   }
 }
+
+@media screen and (orientation: landscape) {
+  h1 {
+    color: green;
+  }
+}

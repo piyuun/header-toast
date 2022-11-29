@@ -41,6 +41,14 @@ export default function Home() {
     const ex4 = example04();
     const list = [ex1, ex2, ex3, ex4];
     setExampleDataList(list);
+
+    const text = document.querySelector("#text");
+    // resize event listener to detect change in screen height
+    if (text) {
+      window.addEventListener("resize", (e) => {
+        text.innerHTML = "Virtual keyboard detected!!!";
+      });
+    }
   }, []);
   
   return (
@@ -54,6 +62,7 @@ export default function Home() {
       {/* <HeaderSticky /> */}
       <TextInputContianer>
         <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
+      <h1 id="text">Change orientation/screen height</h1>
       </TextInputContianer>
       {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
       <ToastContainer
