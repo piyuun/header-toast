@@ -36,7 +36,8 @@ export default function Home() {
   const [value, setValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [exampleDataList, setExampleDataList] = useState<string[]>([]);
-  const isKeyboardOpen = useDetectKeyboardOpen();
+  // const isKeyboardOpen = useDetectKeyboardOpen();
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [windowHeight, setWindowHeight] = useState(0); 
   const [windowAvailHeight, setWindowAvailHeight] = useState(0);
   const size = useWindowSize(); // for responsive web
@@ -64,7 +65,15 @@ export default function Home() {
   useEffect(() => {
     setWindowHeight(window.innerHeight);
     setWindowAvailHeight(window.screen.availHeight);
-  },[size])
+  }, [size])
+  
+  useEffect(() => {
+  // toggle isKeyboardVisible on event listener triggered
+    window.visualViewport?.addEventListener('resize', () => {
+      setIsKeyboardOpen(cur => !cur);
+    });
+  }, [isKeyboardOpen]);
+  
   
   return (
     <>
