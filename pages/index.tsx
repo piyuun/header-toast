@@ -16,6 +16,15 @@ import styled from 'styled-components';
 
 const TestDiv = styled.div`
   float: left;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width : 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: orange;
 `
 
 const TextInputContianer = styled.div`
