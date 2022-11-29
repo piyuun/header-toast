@@ -17,6 +17,7 @@ const Component = styled.textarea`
     font-weight: 500;
   }
   resize: none;
+  scroll-padding-top: 50px;
 `
 interface TextInputProps {
     textAreaRef:React.MutableRefObject<any>;
