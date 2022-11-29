@@ -28,3 +28,8 @@ a {
     background: black;
   }
 }
+
+.fixfixed .headerfix {
+  position: absolute !important;
+}
+
