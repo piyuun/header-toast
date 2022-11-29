@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
 import { HeaderFixed } from '../components/HeaderFixed'
 import { TextInput } from '../components/TextInput'
+import { ToastContainer } from 'react-toastify';
 import useAutosizeTextArea from '../functions/useAutosizeTextArea'
 import styles from '../styles/Home.module.css'
 import {
@@ -10,6 +11,7 @@ import {
   example03,
   example04,
 } from '../functions/examples';
+import { handleWordLimitToast } from '../components/WordLimitToast'
 
 export default function Home() {
   const [value, setValue] = useState("");
@@ -21,6 +23,10 @@ export default function Home() {
   const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = evt.target?.value;
     setValue(val);
+    if (val.length > 5) {
+      console.log('is it work?');
+      handleWordLimitToast();
+    }
   };
 
   useEffect(() => {
@@ -43,6 +49,16 @@ export default function Home() {
       {/* <HeaderSticky /> */}
 
       <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
+
+      {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
+      <ToastContainer
+        enableMultiContainer
+        progressClassName="toastProgress"
+        bodyClassName="toastBody"
+        closeButton={false}
+        toastStyle={{ backgroundColor: '#f8dbd5' }}
+        containerId="words"
+      />
       <h1 className={styles.title}>Device Check</h1>
 
         <div className={styles.description}>
