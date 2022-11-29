@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ToastComponent = styled.div`
-  position: fixed;
-  top : 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,7 +25,7 @@ const WordLimitToast = () => {
 
 export const handleWordLimitToast = () => {
   return toast(({}) => <WordLimitToast />, {
-    position: 'top-center',
+    position: 'bottom-center',
     autoClose: 2000,
     hideProgressBar: true,
     closeOnClick: true,

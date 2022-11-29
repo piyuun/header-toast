@@ -52,7 +52,6 @@ export default function Home() {
 
       {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
       <ToastContainer
-        enableMultiContainer
         progressClassName="toastProgress"
         bodyClassName="toastBody"
         closeButton={false}
