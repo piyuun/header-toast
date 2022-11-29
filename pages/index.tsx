@@ -36,10 +36,11 @@ export default function Home() {
   const [value, setValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [exampleDataList, setExampleDataList] = useState<string[]>([]);
-  // const isKeyboardOpen = useDetectKeyboardOpen();
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const isKeyboardOpen = useDetectKeyboardOpen();
+  // const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [windowHeight, setWindowHeight] = useState(0); 
   const [windowAvailHeight, setWindowAvailHeight] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const size = useWindowSize(); // for responsive web
 
   useAutosizeTextArea(textAreaRef.current, value);
@@ -59,6 +60,9 @@ export default function Home() {
     const ex3 = example03();
     const ex4 = example04();
     const list = [ex1, ex2, ex3, ex4];
+    if (list[0] === 'mobile') {
+      setIsMobile(true);
+    }
     setExampleDataList(list);
   }, []);
 
@@ -67,12 +71,12 @@ export default function Home() {
     setWindowAvailHeight(window.screen.availHeight);
   }, [size])
   
-  useEffect(() => {
-  // toggle isKeyboardVisible on event listener triggered
-    window.visualViewport?.addEventListener('resize', () => {
-      setIsKeyboardOpen(cur => !cur);
-    });
-  }, [isKeyboardOpen]);
+  // useEffect(() => {
+  // // toggle isKeyboardVisible on event listener triggered
+  //   window.visualViewport?.addEventListener('resize', () => {
+  //     setIsKeyboardOpen(cur => !cur);
+  //   });
+  // }, [isKeyboardOpen]);
   
   
   return (
@@ -95,7 +99,7 @@ export default function Home() {
       </TextInputContianer>
       {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
       <ToastContainer
-        className={isKeyboardOpen? 'toast-position': ''}
+        className={isMobile? 'toast-position': ''}
         progressClassName="toastProgress"
         bodyClassName="toastBody"
         closeButton={false}
