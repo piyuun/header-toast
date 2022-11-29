@@ -62,7 +62,7 @@ export default function Home() {
       {/* <HeaderSticky /> */}
       <TextInputContianer>
         <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
-      <h1 id="text">Change orientation/screen height</h1>
+        <h1 id="text">Change orientation/screen height</h1>
       </TextInputContianer>
       {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
       <ToastContainer
