@@ -10,14 +10,12 @@ const Component = styled.textarea`
   resize: none;
   width: 100%;
   white-space: pre-wrap;
-
   &::placeholder {
     color: red;
     font-size: 30px;
     font-weight: 500;
   }
   resize: none;
-  scroll-padding-top: 50px;
 `
 interface TextInputProps {
     textAreaRef:React.MutableRefObject<any>;

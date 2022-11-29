@@ -13,10 +13,7 @@ import {
 } from '../functions/examples';
 import { handleWordLimitToast } from '../components/WordLimitToast'
 import styled from 'styled-components';
-import { subscribe, isSupported } from 'on-screen-keyboard-detector';
-
-
-
+import useDetectKeyboardOpen from "use-detect-keyboard-open";
 
 const TestDiv = styled.div`
   float: left;
@@ -32,15 +29,12 @@ const TestDiv = styled.div`
 `
 
 const TextInputContianer = styled.div`
-  scroll-padding-top: 50px;
-  position: relative;
-  display: inline-block;
 `
 export default function Home() {
   const [value, setValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [exampleDataList, setExampleDataList] = useState<string[]>([]);
-  const [isKeyboardUp, setIsKeyboardUp] = useState(false);
+  const isKeyboardOpen = useDetectKeyboardOpen();
 
   useAutosizeTextArea(textAreaRef.current, value);
 
@@ -53,19 +47,6 @@ export default function Home() {
     }
   };
 
-  if (isSupported()) {
-    const unsubscribe = subscribe(visibility => {
-      if (visibility === "hidden") {
-        setIsKeyboardUp(false);
-      }
-      else { // visibility === "visible"
-        setIsKeyboardUp(true);
-      }
-    });   
-    // After calling unsubscribe() the callback will no longer be invoked.
-    unsubscribe();
-  }
-
   useEffect(() => {
     const ex1 = example01();
     const ex2 = example02();
@@ -73,9 +54,6 @@ export default function Home() {
     const ex4 = example04();
     const list = [ex1, ex2, ex3, ex4];
     setExampleDataList(list);
-
-    
-
   }, []);
   
   return (
@@ -88,7 +66,7 @@ export default function Home() {
       <HeaderFixed/>
       {/* <HeaderSticky /> */}
       <TextInputContianer>
-        {isKeyboardUp
+        {isKeyboardOpen
           ? <TestDiv>VISIBLE</TestDiv>
           : <TestDiv>NONVISIBLE</TestDiv>
         }
