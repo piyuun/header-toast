@@ -25,7 +25,7 @@ interface TextInputProps {
 export const TextInput = ({textAreaRef, handleChange} : TextInputProps) => {
   return (
     <Component
-      placeholder="Type somthing"
+      placeholder="Type something"
       ref={textAreaRef}
       onChange={handleChange}
       onBlur={() => {
