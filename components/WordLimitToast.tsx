@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ToastComponent = styled.div`
+  position: fixed;
+  top : 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: pink;
+  color: red;
   span {
     display: flex;
     align-items: center;
