@@ -1,21 +1,36 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { HeaderFixed } from '../components/HeaderFixed'
-import { HeaderSticky } from '../components/HeaderSticky'
 import { TextInput } from '../components/TextInput'
 import useAutosizeTextArea from '../functions/useAutosizeTextArea'
 import styles from '../styles/Home.module.css'
+import {
+  example01,
+  example02,
+  example03,
+  example04,
+} from '../functions/examples';
 
 export default function Home() {
   const [value, setValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const [exampleDataList, setExampleDataList] = useState<string[]>([]);
 
   useAutosizeTextArea(textAreaRef.current, value);
+  
   const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = evt.target?.value;
     setValue(val);
   };
+
+  useEffect(() => {
+    const ex1 = example01();
+    const ex2 = example02();
+    const ex3 = example03();
+    const ex4 = example04();
+    const list = [ex1, ex2, ex3, ex4];
+    setExampleDataList(list);
+  }, []);
   
   return (
     <>
@@ -26,7 +41,29 @@ export default function Home() {
       </Head>
       <HeaderFixed/>
       {/* <HeaderSticky /> */}
-      <TextInput textAreaRef={textAreaRef} handleChange={handleChange}/>
+
+      <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
+      <h1 className={styles.title}>Test for device check</h1>
+
+        <div className={styles.description}>
+          <table className={styles.table}>
+            <tbody>
+              {exampleDataList.map((item, id) => {
+                return (
+                  <tr key={id}>
+                    <td>
+                      <strong>EX{id + 1}</strong>
+                    </td>
+                    <td>You are using: </td>
+                    <td>
+                      <code className={styles.code}>{item}</code>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
     </>
   )
 }
