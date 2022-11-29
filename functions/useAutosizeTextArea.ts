@@ -11,12 +11,11 @@ const useAutosizeTextArea = (
       textAreaRef.style.height = "0px";
       const scrollHeight = textAreaRef.scrollHeight;
 
-      console.log('hey',  scrollHeight)
+      console.log('text input scroll height: ',  scrollHeight)
       // We then set the height directly, outside of the render loop
       // Trying to set this with state or a ref will product an incorrect value.
       textAreaRef.style.height = scrollHeight + "px";
     }
-    console.log('is it work?')
   }, [textAreaRef, value]);
 };
 
