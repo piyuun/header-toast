@@ -19,7 +19,7 @@ import useVisualViewPort from '../functions/useVisualViewPort';
 import useAvailSize from '../functions/useScreenSize';
 import useScreenSize from '../functions/useScreenSize';
 
-const TestDiv = styled.div`
+const TestDiv = styled.div<{color?: string}>`
   float: left;
   color: white;
   display: flex;
@@ -29,7 +29,7 @@ const TestDiv = styled.div`
   width : 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: orange;
+  ${({color}) => color ? `background-color : ${color}` : `background-color : orange`};
 `
 
 const TextInputContianer = styled.div`
@@ -113,15 +113,15 @@ export default function Home() {
       <HeaderFixed id='header' top={isMobile && isKeyboardOpen ? 200 : 0}>This is Fixed Header</HeaderFixed>
       {/* <HeaderSticky /> */}
       <TextInputContianer>
-        <TestDiv>WINDOW INNER HEIGHT: {windowHeight}</TestDiv>
-        <TestDiv>WINDOW SCREEN HEIGHT: {screenHeight}</TestDiv>
-        <TestDiv>VIEWPORT HEIGHT: {Math.floor(viewPortHeight)}</TestDiv>
+        <TestDiv color='green'>WINDOW INNER HEIGHT: {windowHeight}</TestDiv>
+        <TestDiv color='green'>WINDOW SCREEN HEIGHT: {screenHeight}</TestDiv>
+        <TestDiv color='green'>VIEWPORT HEIGHT: {Math.floor(viewPortHeight)}</TestDiv>
         {isKeyboardOpen
           ? <TestDiv>KEYBOARD VISIBLE</TestDiv>
           : <TestDiv>KEYBOARD NONVISIBLE</TestDiv>
         }
         <TextInput textAreaRef={textAreaRef} handleChange={handleChange} />
-        <TestDiv>HEADER: {enter ? 'ENTER' : 'LEAVE'}</TestDiv>
+        <TestDiv color='red'>HEADER: {enter ? 'ENTER' : 'LEAVE'}</TestDiv>
       </TextInputContianer>
       {/* ===== 3. ToastContainer for rendering word limit toast ===== */}
       <ToastContainer
