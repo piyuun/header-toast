@@ -26,7 +26,7 @@ export default function Cache (){
   }
   const handleSubmit = () => {
     axios
-      .post('/api', { data: text })
+      .post('/api/v2', { data: text })
       .then((res) => {
         setRes(res.data.message);
       });
