@@ -26,7 +26,7 @@ export default function Cache (){
   }
   const handleSubmit = () => {
     axios
-      .post('https://header-toast.vercel.app/', { data: text })
+      .post('https://header-toast.vercel.app/api', { data: text })
       .then((res) => {
         setRes(res.data.message);
       });
